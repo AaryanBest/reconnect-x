@@ -8,8 +8,8 @@ interface LayoutProps {
 
 export const Layout = ({ children, className }: LayoutProps) => {
   return (
-    <div className="min-h-screen w-full relative bg-white">
-      {/* Soft Yellow Glow Background */}
+    <div className="min-h-screen w-full relative bg-background">
+      {/* Premium Background Glow */}
       <div className="glow-background">
         <div className="absolute inset-0 z-0" />
       </div>
@@ -19,60 +19,62 @@ export const Layout = ({ children, className }: LayoutProps) => {
 
       {/* Main Content */}
       <main className={cn("relative z-10 pt-nav", className)}>
-        {children}
+        <div className="min-h-[calc(100vh-4.5rem)]">
+          {children}
+        </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-card border-t border-border mt-20">
-        <div className="container mx-auto px-6 py-8">
+      {/* Premium Footer */}
+      <footer className="relative z-10 bg-card/50 border-t border-border/50 mt-24 backdrop-blur-sm">
+        <div className="container-premium py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">AC</span>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary via-primary-hover to-accent rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-primary-foreground font-bold text-lg">AC</span>
                 </div>
-                <span className="text-xl font-bold text-foreground">AlumniConnect</span>
+                <span className="text-2xl font-bold text-foreground text-premium">AlumniConnect</span>
               </div>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
                 A government-backed centralized platform connecting alumni, empowering students, 
                 and strengthening institutions through networking, mentorship, and career opportunities.
               </p>
-              <div className="flex space-x-4">
-                <div className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium">
+              <div className="flex flex-wrap gap-3">
+                <div className="px-4 py-2 bg-primary-light text-primary text-sm rounded-full font-semibold border border-primary/20">
                   Government Initiative
                 </div>
-                <div className="px-3 py-1 bg-success/10 text-success text-sm rounded-full font-medium">
+                <div className="px-4 py-2 bg-success-light text-success text-sm rounded-full font-semibold border border-success/20">
                   Nationwide Platform
                 </div>
               </div>
             </div>
             
             <div>
-              <h3 className="font-semibold text-foreground mb-3">Platform</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-smooth">About</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Contact</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Terms of Service</a></li>
+              <h3 className="font-bold text-foreground mb-4 text-lg">Platform</h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">About</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Contact</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Terms of Service</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold text-foreground mb-3">Support</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-smooth">Help Center</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Documentation</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Status</a></li>
-                <li><a href="#" className="hover:text-foreground transition-smooth">Feedback</a></li>
+              <h3 className="font-bold text-foreground mb-4 text-lg">Support</h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Help Center</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Documentation</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Status</a></li>
+                <li><a href="#" className="hover:text-primary transition-smooth font-medium">Feedback</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-border mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm">
+          <div className="border-t border-border/50 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-muted-foreground font-medium">
               © 2025 AlumniConnect. A Government of India Initiative.
             </p>
-            <p className="text-muted-foreground text-sm mt-2 sm:mt-0">
+            <p className="text-muted-foreground font-medium mt-2 sm:mt-0">
               Built for Smart India Hackathon 2025
             </p>
           </div>

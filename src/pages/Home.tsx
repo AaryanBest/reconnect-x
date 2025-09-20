@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Network, Briefcase, TrendingUp, ArrowRight, CheckCircle, Star } from "lucide-react";
+import { Users, Network, Briefcase, TrendingUp, ArrowRight, CheckCircle, Star, Play, Rocket, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -36,23 +36,20 @@ const Home = () => {
     {
       name: "Priya Sharma",
       role: "Software Engineer @ Microsoft",
-      batch: "Batch 2020, IIT Delhi",
+      institution: "IIT Delhi",
       content: "AlumniConnect helped me find my dream job through a senior alumnus. The networking opportunities are incredible!",
-      avatar: "PS"
     },
     {
-      name: "Rajesh Kumar",
+      name: "Rajesh Kumar", 
       role: "Startup Founder",
-      batch: "Batch 2018, NIT Trichy",
+      institution: "NIT Trichy",
       content: "As an entrepreneur, I love giving back by posting internship opportunities. The platform makes it so easy to connect with bright students.",
-      avatar: "RK"
     },
     {
       name: "Dr. Anita Desai",
       role: "Research Scientist",
-      batch: "Batch 2015, BITS Pilani",
+      institution: "BITS Pilani", 
       content: "The mentorship program through AlumniConnect transformed my career path. Now I mentor 5 students every semester.",
-      avatar: "AD"
     }
   ];
 
@@ -61,75 +58,79 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 animate-fade-in">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="container-premium">
+          <div className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center px-6 py-3 bg-primary-light border border-primary/20 text-primary rounded-full text-sm font-semibold mb-8 animate-slide-in-up shadow-md">
               <CheckCircle className="w-4 h-4 mr-2" />
               Government of India Initiative
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 animate-slide-up">
+            <h1 className="text-5xl lg:text-7xl font-bold mb-8 animate-slide-in-up text-premium leading-tight" style={{animationDelay: '0.1s'}}>
               <span className="gradient-text">Connecting Alumni.</span><br />
               <span className="text-foreground">Empowering Students.</span><br />
               <span className="text-foreground">Strengthening Institutions.</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+            <p className="text-xl lg:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto animate-slide-in-up leading-relaxed" style={{animationDelay: '0.2s'}}>
               A single digital platform to manage alumni data and foster engagement across India's educational ecosystem.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: '0.4s'}}>
-              <Button variant="hero" size="xl" onClick={scrollToLogin}>
-                Get Started
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-in-up mb-16" style={{animationDelay: '0.3s'}}>
+              <Button variant="hero" size="xl" onClick={scrollToLogin} className="btn-premium btn-glow">
+                Get Started Today
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <Link to="/future-scope">
-                <Button variant="outline" size="xl">
-                  View Roadmap
-                </Button>
-              </Link>
+              <Button variant="glass" size="xl" className="btn-premium">
+                <Play className="w-5 h-5" />
+                Watch Demo
+              </Button>
             </div>
             
             {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 animate-fade-in" style={{animationDelay: '0.6s'}}>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 animate-slide-in-up" style={{animationDelay: '0.4s'}}>
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-primary mb-1">{stat.number}</div>
-                  <div className="text-muted-foreground text-sm">{stat.label}</div>
+                <div key={index} className="text-center p-6 card-premium">
+                  <div className="text-4xl lg:text-5xl font-bold text-primary mb-2 text-premium">{stat.number}</div>
+                  <div className="text-muted-foreground font-semibold">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float hidden lg:block" />
+        <div className="absolute top-40 right-20 w-16 h-16 bg-accent/10 rounded-full animate-float hidden lg:block" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-success/10 rounded-full animate-float hidden lg:block" style={{ animationDelay: '2s' }} />
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="container mx-auto px-6">
+      <section className="section-spacing bg-secondary/30">
+        <div className="container-premium">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Comprehensive Alumni Management</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-premium">Comprehensive Alumni Management</h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Designed to bridge the gap between alumni, current students, and institutions through 
               innovative technology and government-backed security.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid-responsive">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Card key={index} className="card-elevated border-0 bg-card/80 backdrop-blur-sm">
+                <Card key={index} className="card-premium border-0 bg-card/80 backdrop-blur-sm group h-full">
                   <CardHeader className="text-center pb-4">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center mb-4">
-                      <Icon className={`w-8 h-8 ${feature.color}`} />
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <Icon className={`w-10 h-10 ${feature.color}`} />
                     </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                    <CardTitle className="text-2xl text-premium">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <CardDescription className="text-base">
+                    <CardDescription className="text-lg leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </CardContent>
@@ -141,33 +142,33 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
+      <section className="section-spacing">
+        <div className="container-premium">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Success Stories</h2>
-            <p className="text-xl text-muted-foreground">
-              Real experiences from our alumni community
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-premium">Success Stories</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Real experiences from our thriving alumni community
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid-responsive">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="card-elevated border-0">
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                      {testimonial.avatar}
+              <Card key={index} className="card-premium border-0 h-full">
+                <CardContent className="pt-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center text-primary font-bold text-lg mr-4">
+                      {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      <p className="text-xs text-primary">{testimonial.batch}</p>
+                      <h4 className="font-bold text-foreground text-lg text-premium">{testimonial.name}</h4>
+                      <p className="text-sm text-muted-foreground font-semibold">{testimonial.role}</p>
+                      <p className="text-xs text-primary font-semibold">{testimonial.institution}</p>
                     </div>
                   </div>
-                  <p className="text-muted-foreground italic mb-4">"{testimonial.content}"</p>
+                  <p className="text-muted-foreground italic mb-6 text-lg leading-relaxed">"{testimonial.content}"</p>
                   <div className="flex text-accent">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
+                      <Star key={i} className="w-5 h-5 fill-current" />
                     ))}
                   </div>
                 </CardContent>
@@ -178,20 +179,22 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section id="login-section" className="py-20 bg-gradient-to-r from-primary to-accent text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Connect?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join thousands of alumni and students already benefiting from our platform
+      <section id="login-section" className="section-spacing bg-gradient-to-r from-primary via-primary-hover to-accent text-primary-foreground">
+        <div className="container-premium text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-premium">Ready to Transform Your Network?</h2>
+          <p className="text-xl lg:text-2xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Join thousands of alumni and students already benefiting from our government-backed platform
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/login">
-              <Button variant="secondary" size="xl" className="bg-white text-primary hover:bg-white/90">
+              <Button variant="glass" size="xl" className="btn-premium text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/10">
+                <Rocket className="w-5 h-5" />
                 Login to Your Account
               </Button>
             </Link>
             <Link to="/login?tab=signup">
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white/10">
+              <Button variant="outline" size="xl" className="btn-premium border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                <Phone className="w-5 h-5" />
                 Create New Account
               </Button>
             </Link>
@@ -200,19 +203,19 @@ const Home = () => {
       </section>
 
       {/* Government Initiative Badge */}
-      <section className="py-12 bg-card border-t">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-8 text-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">🇮🇳</span>
+      <section className="py-16 bg-card/50 border-t border-border/50">
+        <div className="container-premium">
+          <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-12 text-center">
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-2xl">🇮🇳</span>
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground">Digital India Initiative</h3>
-                <p className="text-sm text-muted-foreground">Empowering education through technology</p>
+              <div className="text-left">
+                <h3 className="font-bold text-foreground text-xl text-premium">Digital India Initiative</h3>
+                <p className="text-muted-foreground font-semibold">Empowering education through technology</p>
               </div>
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground font-semibold">
               Developed for Smart India Hackathon 2025 • Scalable for nationwide adoption
             </div>
           </div>
