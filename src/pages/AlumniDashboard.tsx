@@ -96,7 +96,7 @@ const AlumniDashboard = () => {
       <div className="mb-8">
         <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-6 text-white">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-            <div>
+            <div className="bg-white/[0.31]">
               <h1 className="text-3xl font-bold mb-2">
                 Welcome back, {profile.name}!
               </h1>
