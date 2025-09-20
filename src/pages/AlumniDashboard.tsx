@@ -2,7 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { User, Briefcase, Calendar, Users, Search, MapPin, GraduationCap, Building2, Mail, Phone, Edit, Plus, ExternalLink } from "lucide-react";
+import { 
+  User, 
+  Briefcase, 
+  Calendar, 
+  Users, 
+  Search, 
+  MapPin, 
+  GraduationCap,
+  Building2,
+  Mail,
+  Phone,
+  Edit,
+  Plus,
+  ExternalLink
+} from "lucide-react";
+
 const AlumniDashboard = () => {
   const profile = {
     name: "Rahul Sharma",
@@ -17,86 +32,84 @@ const AlumniDashboard = () => {
     skills: ["React", "Node.js", "Python", "AWS", "Leadership", "Team Management"],
     bio: "Passionate software engineer with 6+ years of experience in full-stack development. Love mentoring junior developers and contributing to open-source projects."
   };
-  const upcomingEvents = [{
-    id: 1,
-    title: "IIT Delhi Alumni Meet 2025",
-    date: "March 15, 2025",
-    location: "New Delhi",
-    type: "Networking",
-    attendees: 250,
-    status: "registered"
-  }, {
-    id: 2,
-    title: "Tech Innovation Summit",
-    date: "April 22, 2025",
-    location: "Bangalore",
-    type: "Conference",
-    attendees: 500,
-    status: "interested"
-  }, {
-    id: 3,
-    title: "Alumni Startup Pitch Day",
-    date: "May 10, 2025",
-    location: "Mumbai",
-    type: "Competition",
-    attendees: 150,
-    status: "not_registered"
-  }];
-  const jobListings = [{
-    id: 1,
-    title: "Frontend Developer Intern",
-    company: "TCS Innovation Labs",
-    location: "Pune",
-    type: "Internship",
-    postedBy: "Priya Patel (Batch 2020)",
-    postedDate: "2 days ago",
-    applicants: 45
-  }, {
-    id: 2,
-    title: "Data Scientist",
-    company: "Flipkart",
-    location: "Bangalore",
-    type: "Full-time",
-    postedBy: "Arjun Singh (Batch 2019)",
-    postedDate: "1 week ago",
-    applicants: 78
-  }, {
-    id: 3,
-    title: "Product Manager",
-    company: "Zomato",
-    location: "Gurgaon",
-    type: "Full-time",
-    postedBy: "Ananya Gupta (Batch 2017)",
-    postedDate: "3 days ago",
-    applicants: 32
-  }];
-  const recentAlumni = [{
-    name: "Sneha Reddy",
-    batch: "2019",
-    company: "Google",
-    role: "SWE"
-  }, {
-    name: "Vikash Kumar",
-    batch: "2020",
-    company: "Amazon",
-    role: "PM"
-  }, {
-    name: "Meera Joshi",
-    batch: "2018",
-    company: "Uber",
-    role: "DS"
-  }, {
-    name: "Rohit Agarwal",
-    batch: "2021",
-    company: "Swiggy",
-    role: "SDE"
-  }];
-  return <div className="container mx-auto px-6 py-8">
+
+  const upcomingEvents = [
+    {
+      id: 1,
+      title: "IIT Delhi Alumni Meet 2025",
+      date: "March 15, 2025",
+      location: "New Delhi",
+      type: "Networking",
+      attendees: 250,
+      status: "registered"
+    },
+    {
+      id: 2,
+      title: "Tech Innovation Summit",
+      date: "April 22, 2025",
+      location: "Bangalore",
+      type: "Conference",
+      attendees: 500,
+      status: "interested"
+    },
+    {
+      id: 3,
+      title: "Alumni Startup Pitch Day",
+      date: "May 10, 2025",
+      location: "Mumbai",
+      type: "Competition",
+      attendees: 150,
+      status: "not_registered"
+    }
+  ];
+
+  const jobListings = [
+    {
+      id: 1,
+      title: "Frontend Developer Intern",
+      company: "TCS Innovation Labs",
+      location: "Pune",
+      type: "Internship",
+      postedBy: "Priya Patel (Batch 2020)",
+      postedDate: "2 days ago",
+      applicants: 45
+    },
+    {
+      id: 2,
+      title: "Data Scientist",
+      company: "Flipkart",
+      location: "Bangalore",
+      type: "Full-time",
+      postedBy: "Arjun Singh (Batch 2019)",
+      postedDate: "1 week ago",
+      applicants: 78
+    },
+    {
+      id: 3,
+      title: "Product Manager",
+      company: "Zomato",
+      location: "Gurgaon",
+      type: "Full-time",
+      postedBy: "Ananya Gupta (Batch 2017)",
+      postedDate: "3 days ago",
+      applicants: 32
+    }
+  ];
+
+  const recentAlumni = [
+    { name: "Sneha Reddy", batch: "2019", company: "Google", role: "SWE" },
+    { name: "Vikash Kumar", batch: "2020", company: "Amazon", role: "PM" },
+    { name: "Meera Joshi", batch: "2018", company: "Uber", role: "DS" },
+    { name: "Rohit Agarwal", batch: "2021", company: "Swiggy", role: "SDE" }
+  ];
+
+  return (
+    <div className="container mx-auto px-6 py-8">
       {/* Welcome Header */}
       <div className="mb-8">
         <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-6 text-white">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-            <div className="bg-white/[0.31]">
+            <div>
               <h1 className="text-3xl font-bold mb-2">
                 Welcome back, {profile.name}!
               </h1>
@@ -109,7 +122,7 @@ const AlumniDashboard = () => {
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Profile
               </Button>
-              <Button variant="outline" size="sm" className="border-white text-white bg-white/10">
+              <Button variant="outline" size="sm" className="border-white text-white hover:bg-white/10">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 Public Profile
               </Button>
@@ -157,9 +170,11 @@ const AlumniDashboard = () => {
               <div>
                 <p className="text-sm font-medium mb-2">Skills</p>
                 <div className="flex flex-wrap gap-1">
-                  {profile.skills.map((skill, index) => <Badge key={index} variant="secondary" className="text-xs">
+                  {profile.skills.map((skill, index) => (
+                    <Badge key={index} variant="secondary" className="text-xs">
                       {skill}
-                    </Badge>)}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </CardContent>
@@ -173,7 +188,10 @@ const AlumniDashboard = () => {
             <CardContent className="space-y-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input placeholder="Search by name, batch, company..." className="pl-9" />
+                <Input 
+                  placeholder="Search by name, batch, company..." 
+                  className="pl-9"
+                />
               </div>
               <Button variant="outline" size="sm" className="w-full">
                 <Users className="w-4 h-4 mr-2" />
@@ -189,7 +207,8 @@ const AlumniDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {recentAlumni.map((alumni, index) => <div key={index} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-secondary/50 transition-smooth">
+                {recentAlumni.map((alumni, index) => (
+                  <div key={index} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-secondary/50 transition-smooth">
                     <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white text-xs font-semibold">
                       {alumni.name.split(' ').map(n => n[0]).join('')}
                     </div>
@@ -197,7 +216,8 @@ const AlumniDashboard = () => {
                       <p className="text-sm font-medium truncate">{alumni.name}</p>
                       <p className="text-xs text-muted-foreground">{alumni.role} @ {alumni.company} • {alumni.batch}</p>
                     </div>
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -235,14 +255,19 @@ const AlumniDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {upcomingEvents.map(event => <div key={event.id} className="border border-border rounded-lg p-4 hover:bg-secondary/50 transition-smooth">
+                {upcomingEvents.map((event) => (
+                  <div key={event.id} className="border border-border rounded-lg p-4 hover:bg-secondary/50 transition-smooth">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h3 className="font-semibold text-lg">{event.title}</h3>
                         <p className="text-muted-foreground">{event.date} • {event.location}</p>
                       </div>
-                      <Badge variant={event.status === 'registered' ? 'default' : event.status === 'interested' ? 'secondary' : 'outline'}>
-                        {event.status === 'registered' ? 'Registered' : event.status === 'interested' ? 'Interested' : 'Available'}
+                      <Badge variant={
+                        event.status === 'registered' ? 'default' : 
+                        event.status === 'interested' ? 'secondary' : 'outline'
+                      }>
+                        {event.status === 'registered' ? 'Registered' :
+                         event.status === 'interested' ? 'Interested' : 'Available'}
                       </Badge>
                     </div>
                     <div className="flex items-center justify-between">
@@ -251,11 +276,15 @@ const AlumniDashboard = () => {
                         <span>•</span>
                         <span>{event.type}</span>
                       </div>
-                      <Button size="sm" variant={event.status === 'registered' ? 'secondary' : 'default'}>
+                      <Button 
+                        size="sm" 
+                        variant={event.status === 'registered' ? 'secondary' : 'default'}
+                      >
                         {event.status === 'registered' ? 'View Details' : 'RSVP'}
                       </Button>
                     </div>
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -274,7 +303,8 @@ const AlumniDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {jobListings.map(job => <div key={job.id} className="border border-border rounded-lg p-4 hover:bg-secondary/50 transition-smooth">
+                {jobListings.map((job) => (
+                  <div key={job.id} className="border border-border rounded-lg p-4 hover:bg-secondary/50 transition-smooth">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h3 className="font-semibold text-lg">{job.title}</h3>
@@ -291,12 +321,15 @@ const AlumniDashboard = () => {
                       </span>
                       <Button size="sm">Apply Now</Button>
                     </div>
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default AlumniDashboard;
