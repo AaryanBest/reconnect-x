@@ -103,13 +103,9 @@ const Home = () => {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float hidden lg:block" />
-        <div className="absolute top-40 right-20 w-16 h-16 bg-accent/10 rounded-full animate-float hidden lg:block" style={{
-        animationDelay: '1s'
-      }} />
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-success/10 rounded-full animate-float hidden lg:block" style={{
-        animationDelay: '2s'
-      }} />
+        
+        
+        
       </section>
 
       {/* Features Section */}
