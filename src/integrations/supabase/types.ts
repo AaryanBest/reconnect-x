@@ -50,6 +50,75 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          admin_level: string | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          current_company: string | null
+          email: string
+          first_name: string | null
+          graduation_year: number | null
+          id: string
+          institution: string | null
+          institution_code: string | null
+          institution_name: string | null
+          is_verified: boolean | null
+          job_title: string | null
+          last_name: string | null
+          linkedin_url: string | null
+          role: string
+          skills: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_level?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          current_company?: string | null
+          email: string
+          first_name?: string | null
+          graduation_year?: number | null
+          id?: string
+          institution?: string | null
+          institution_code?: string | null
+          institution_name?: string | null
+          is_verified?: boolean | null
+          job_title?: string | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          role: string
+          skills?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_level?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          current_company?: string | null
+          email?: string
+          first_name?: string | null
+          graduation_year?: number | null
+          id?: string
+          institution?: string | null
+          institution_code?: string | null
+          institution_name?: string | null
+          is_verified?: boolean | null
+          job_title?: string | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          role?: string
+          skills?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
