@@ -105,9 +105,7 @@ const Home = () => {
         {/* Floating Elements */}
         
         
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-success/10 rounded-full animate-float hidden lg:block" style={{
-        animationDelay: '2s'
-      }} />
+        
       </section>
 
       {/* Features Section */}
