@@ -90,14 +90,51 @@ const Home = () => {
               </Button>
             </div>
             
-            {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 animate-slide-in-up" style={{
-            animationDelay: '0.4s'
-          }}>
-              {stats.map((stat, index) => <div key={index} className="text-center p-6 card-premium">
-                  <div className="text-4xl lg:text-5xl font-bold text-primary mb-2 text-premium">{stat.number}</div>
-                  <div className="text-muted-foreground font-semibold">{stat.label}</div>
-                </div>)}
+            {/* Interactive Demo Preview */}
+            <div className="animate-slide-in-up" style={{ animationDelay: '0.4s' }}>
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gradient-to-r from-card via-secondary/50 to-card rounded-3xl p-8 border border-border/50 shadow-2xl">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Experience the Platform</h3>
+                    <p className="text-muted-foreground">See how AlumniConnect transforms educational networking</p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="group cursor-pointer">
+                      <div className="bg-primary/10 rounded-2xl p-6 hover:bg-primary/20 transition-all duration-300 border border-primary/20">
+                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                          <Users className="w-6 h-6 text-primary" />
+                        </div>
+                        <h4 className="font-semibold text-foreground mb-2">Connect Instantly</h4>
+                        <p className="text-sm text-muted-foreground">Find alumni by company, skills, or location with advanced search filters</p>
+                        <div className="mt-4 text-xs text-primary font-medium">25,000+ Active Alumni →</div>
+                      </div>
+                    </div>
+                    
+                    <div className="group cursor-pointer">
+                      <div className="bg-accent/10 rounded-2xl p-6 hover:bg-accent/20 transition-all duration-300 border border-accent/20">
+                        <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                          <Briefcase className="w-6 h-6 text-accent" />
+                        </div>
+                        <h4 className="font-semibold text-foreground mb-2">Career Growth</h4>
+                        <p className="text-sm text-muted-foreground">Access exclusive job openings posted by fellow alumni</p>
+                        <div className="mt-4 text-xs text-accent font-medium">5,000+ Opportunities →</div>
+                      </div>
+                    </div>
+                    
+                    <div className="group cursor-pointer">
+                      <div className="bg-success/10 rounded-2xl p-6 hover:bg-success/20 transition-all duration-300 border border-success/20">
+                        <div className="w-12 h-12 bg-success/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                          <TrendingUp className="w-6 h-6 text-success" />
+                        </div>
+                        <h4 className="font-semibold text-foreground mb-2">Mentorship</h4>
+                        <p className="text-sm text-muted-foreground">Get guidance from industry leaders in your field</p>
+                        <div className="mt-4 text-xs text-success font-medium">1,000+ Mentors →</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

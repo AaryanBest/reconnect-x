@@ -5,27 +5,72 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, Building2, Shield, ArrowRight, CheckCircle } from "lucide-react";
+import { Users, Building2, Shield, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { user, signIn, signUp } = useAuth();
   const [activeTab, setActiveTab] = useState("alumni");
   const [isSignup, setIsSignup] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "", 
+    email: "",
+    password: "",
+    institutionCode: "",
+    adminPin: "",
+    graduationYear: "",
+    institution: "",
+  });
 
   useEffect(() => {
+    // Redirect if already logged in
+    if (user) {
+      navigate("/dashboard/alumni");
+    }
+
     const tab = searchParams.get("tab");
     if (tab === "signup") {
       setIsSignup(true);
     }
-  }, [searchParams]);
+  }, [searchParams, user, navigate]);
 
-  const handleLogin = (role: string) => {
-    // Navigate to appropriate dashboard
-    if (role === "alumni") {
-      navigate("/dashboard/alumni");
-    } else if (role === "institution" || role === "admin") {
-      navigate("/dashboard/admin");
+  const handleSubmit = async (role: string) => {
+    if (!formData.email || !formData.password) return;
+    
+    setLoading(true);
+    
+    try {
+      if (isSignup) {
+        const metadata = {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          role: role,
+          institution_code: role === 'institution' ? formData.institutionCode : null,
+          graduation_year: role === 'alumni' ? formData.graduationYear : null,
+          institution: role === 'alumni' ? formData.institution : null,
+        };
+        
+        const { error } = await signUp(formData.email, formData.password, metadata);
+        if (!error) {
+          // Success message already shown in useAuth
+        }
+      } else {
+        const { error } = await signIn(formData.email, formData.password);
+        if (!error) {
+          if (role === "alumni") {
+            navigate("/onboarding");
+          } else {
+            navigate("/dashboard/admin");
+          }
+        }
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -126,11 +171,21 @@ const Login = () => {
                             <div className="grid grid-cols-2 gap-4">
                               <div>
                                 <Label htmlFor="firstName">First Name</Label>
-                                <Input id="firstName" placeholder="John" />
+                                <Input 
+                                  id="firstName" 
+                                  placeholder="John" 
+                                  value={formData.firstName}
+                                  onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+                                />
                               </div>
                               <div>
                                 <Label htmlFor="lastName">Last Name</Label>
-                                <Input id="lastName" placeholder="Doe" />
+                                <Input 
+                                  id="lastName" 
+                                  placeholder="Doe"
+                                  value={formData.lastName}
+                                  onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+                                />
                               </div>
                             </div>
                           </>
@@ -146,7 +201,19 @@ const Login = () => {
                               role.id === "institution" ? "admin@institution.edu" :
                               "admin@alumniconnect.gov.in"
                             }
+                            value={formData.email}
+                            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                           />
+                          {role.id === "institution" && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Must use institutional email (.edu domain)
+                            </p>
+                          )}
+                          {role.id === "admin" && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Must use government email (.gov.in domain)
+                            </p>
+                          )}
                         </div>
 
                         {role.id === "institution" && (
@@ -154,7 +221,9 @@ const Login = () => {
                             <Label htmlFor="institutionCode">Institution Code</Label>
                             <Input 
                               id="institutionCode" 
-                              placeholder="e.g., IIT001, NIT002" 
+                              placeholder="e.g., IIT001, NIT002"
+                              value={formData.institutionCode}
+                              onChange={(e) => setFormData(prev => ({ ...prev, institutionCode: e.target.value }))}
                             />
                           </div>
                         )}
@@ -165,25 +234,42 @@ const Login = () => {
                             <Input 
                               id="adminPin" 
                               type="password"
-                              placeholder="Enter your admin PIN" 
+                              placeholder="Enter your admin PIN"
+                              value={formData.adminPin}
+                              onChange={(e) => setFormData(prev => ({ ...prev, adminPin: e.target.value }))}
                             />
                           </div>
                         )}
 
                         <div>
                           <Label htmlFor="password">Password</Label>
-                          <Input id="password" type="password" />
+                          <Input 
+                            id="password" 
+                            type="password"
+                            value={formData.password}
+                            onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                          />
                         </div>
 
                         {isSignup && role.id === "alumni" && (
                           <>
                             <div>
                               <Label htmlFor="graduationYear">Graduation Year</Label>
-                              <Input id="graduationYear" placeholder="2020" />
+                              <Input 
+                                id="graduationYear" 
+                                placeholder="2020"
+                                value={formData.graduationYear}
+                                onChange={(e) => setFormData(prev => ({ ...prev, graduationYear: e.target.value }))}
+                              />
                             </div>
                             <div>
                               <Label htmlFor="institution">Institution</Label>
-                              <Input id="institution" placeholder="e.g., IIT Delhi, NIT Trichy" />
+                              <Input 
+                                id="institution" 
+                                placeholder="e.g., IIT Delhi, NIT Trichy"
+                                value={formData.institution}
+                                onChange={(e) => setFormData(prev => ({ ...prev, institution: e.target.value }))}
+                              />
                             </div>
                           </>
                         )}
@@ -191,10 +277,12 @@ const Login = () => {
                         <Button 
                           className="w-full" 
                           size="lg"
-                          onClick={() => handleLogin(role.id)}
+                          onClick={() => handleSubmit(role.id)}
+                          disabled={loading}
                         >
+                          {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                           {isSignup ? "Create Account" : "Sign In"}
-                          <ArrowRight className="w-4 h-4" />
+                          {!loading && <ArrowRight className="w-4 h-4" />}
                         </Button>
 
                         {role.id === "alumni" && (
