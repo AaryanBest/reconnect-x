@@ -64,6 +64,8 @@ const Login = () => {
         if (!error) {
           if (role === "alumni") {
             navigate("/onboarding");
+          } else if (role === "student") {
+            navigate("/dashboard/alumni");
           } else {
             navigate("/dashboard/admin");
           }
@@ -90,10 +92,10 @@ const Login = () => {
       color: "text-accent"
     },
     {
-      id: "admin",
-      title: "Admin",
+      id: "student",
+      title: "Student",
       icon: Shield,
-      description: "System administration and platform management",
+      description: "Access resources and connect with alumni mentors",
       color: "text-success"
     }
   ];
@@ -104,9 +106,9 @@ const Login = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">AC</span>
+              <span className="text-white font-bold text-lg">RX</span>
             </div>
-            <span className="text-2xl font-bold text-foreground">AlumniConnect</span>
+            <span className="text-2xl font-bold text-foreground">ReconnectX</span>
           </div>
           <h1 className="text-3xl font-bold mb-2">
             {isSignup ? "Join the Network" : "Welcome Back"}
@@ -199,7 +201,7 @@ const Login = () => {
                             placeholder={
                               role.id === "alumni" ? "your.email@domain.com" :
                               role.id === "institution" ? "admin@institution.edu" :
-                              "admin@alumniconnect.gov.in"
+                              "student@university.edu"
                             }
                             value={formData.email}
                             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -209,9 +211,9 @@ const Login = () => {
                               Must use institutional email (.edu domain)
                             </p>
                           )}
-                          {role.id === "admin" && (
+                          {role.id === "student" && (
                             <p className="text-xs text-muted-foreground mt-1">
-                              Must use government email (.gov.in domain)
+                              Must use educational email (.edu domain)
                             </p>
                           )}
                         </div>
@@ -228,15 +230,14 @@ const Login = () => {
                           </div>
                         )}
 
-                        {role.id === "admin" && (
+                        {role.id === "student" && (
                           <div>
-                            <Label htmlFor="adminPin">Secure PIN</Label>
+                            <Label htmlFor="studentId">Student ID</Label>
                             <Input 
-                              id="adminPin" 
-                              type="password"
-                              placeholder="Enter your admin PIN"
-                              value={formData.adminPin}
-                              onChange={(e) => setFormData(prev => ({ ...prev, adminPin: e.target.value }))}
+                              id="studentId" 
+                              placeholder="e.g., 2021CS001"
+                              value={formData.institutionCode}
+                              onChange={(e) => setFormData(prev => ({ ...prev, institutionCode: e.target.value }))}
                             />
                           </div>
                         )}
@@ -285,10 +286,10 @@ const Login = () => {
                           {!loading && <ArrowRight className="w-4 h-4" />}
                         </Button>
 
-                        {role.id === "alumni" && (
+                        {role.id === "student" && (
                           <div className="text-center text-sm text-muted-foreground">
                             <CheckCircle className="w-4 h-4 inline mr-1" />
-                            Your credentials will be verified with your institution
+                            Your student credentials will be verified with your institution
                           </div>
                         )}
                       </div>

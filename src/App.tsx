@@ -16,6 +16,8 @@ import Events from "./pages/Events";
 import Jobs from "./pages/Jobs";
 import FutureScope from "./pages/FutureScope";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import PageInProgress from "./pages/PageInProgress";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,7 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/onboarding" element={<AlumniOnboarding />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/dashboard/alumni" element={<AlumniDashboard />} />
               <Route path="/dashboard/admin" element={<AdminDashboard />} />
               <Route path="/dashboard" element={<AlumniDashboard />} />
@@ -38,6 +41,8 @@ const App = () => (
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/analytics" element={<AdminDashboard />} />
               <Route path="/future-scope" element={<FutureScope />} />
+              <Route path="/page-in-progress" element={<PageInProgress />} />
+              <Route path="/settings" element={<PageInProgress />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

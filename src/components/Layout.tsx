@@ -1,5 +1,7 @@
 import { Navigation } from "./Navigation";
+import { ProfileNavigation } from "./ProfileNavigation";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,6 +9,17 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children, className }: LayoutProps) => {
+  const { user, loading } = useAuth();
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen w-full relative bg-background">
       {/* Premium Background Glow */}
@@ -14,8 +27,8 @@ export const Layout = ({ children, className }: LayoutProps) => {
         <div className="absolute inset-0 z-0" />
       </div>
 
-      {/* Navigation */}
-      <Navigation />
+      {/* Navigation - conditional based on auth status */}
+      {user ? <ProfileNavigation /> : <Navigation />}
 
       {/* Main Content */}
       <main className={cn("relative z-10 pt-nav", className)}>
@@ -31,9 +44,9 @@ export const Layout = ({ children, className }: LayoutProps) => {
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary via-primary-hover to-accent rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-primary-foreground font-bold text-lg">AC</span>
+                  <span className="text-primary-foreground font-bold text-lg">RX</span>
                 </div>
-                <span className="text-2xl font-bold text-foreground text-premium">AlumniConnect</span>
+                <span className="text-2xl font-bold text-foreground text-premium">ReconnectX</span>
               </div>
               <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
                 A government-backed centralized platform connecting alumni, empowering students, 
@@ -72,7 +85,7 @@ export const Layout = ({ children, className }: LayoutProps) => {
           
           <div className="border-t border-border/50 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center">
             <p className="text-muted-foreground font-medium">
-              © 2025 AlumniConnect. A Government of India Initiative.
+              © 2025 ReconnectX. A Government of India Initiative.
             </p>
             <p className="text-muted-foreground font-medium mt-2 sm:mt-0">
               Built for Smart India Hackathon 2025

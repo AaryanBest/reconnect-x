@@ -136,7 +136,9 @@ export default {
         "nav-compact": "4rem"
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Geist", "Inter", "system-ui", "sans-serif"],
+        display: ["Geist", "Inter", "system-ui", "sans-serif"],
+        mono: ["Geist Mono", "Consolas", "monospace"],
       }
     },
   },

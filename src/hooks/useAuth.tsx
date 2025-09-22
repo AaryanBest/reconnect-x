@@ -53,15 +53,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const validateEmail = (email: string, role: string): boolean => {
-    const eduDomains = ['.edu', '.ac.in', '.edu.in'];
+    const eduDomains = ['.edu', '.ac.in', '.edu.in', '.school', '.college'];
     const govDomains = ['.gov.in', '.nic.in', '.gov'];
     
     if (role === 'institution') {
       return eduDomains.some(domain => email.includes(domain));
     }
     
-    if (role === 'admin') {
-      return govDomains.some(domain => email.includes(domain));
+    if (role === 'student') {
+      return eduDomains.some(domain => email.includes(domain));
     }
     
     return true; // Alumni can use any email
@@ -69,7 +69,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signUp = async (email: string, password: string, metadata: any) => {
     if (!validateEmail(email, metadata.role)) {
-      const domainType = metadata.role === 'institution' ? 'educational (.edu)' : 'government (.gov.in)';
+      const domainType = metadata.role === 'institution' ? 'educational (.edu)' : 
+                        metadata.role === 'student' ? 'educational (.edu)' : 'government (.gov.in)';
       const error = new Error(`Please use a valid ${domainType} email address for ${metadata.role} registration.`);
       toast({
         title: "Invalid Email Domain",

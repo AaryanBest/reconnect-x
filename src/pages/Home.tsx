@@ -36,7 +36,7 @@ const Home = () => {
     name: "Priya Sharma",
     role: "Software Engineer @ Microsoft",
     institution: "IIT Delhi",
-    content: "AlumniConnect helped me find my dream job through a senior alumnus. The networking opportunities are incredible!"
+    content: "ReconnectX helped me find my dream job through a senior alumnus. The networking opportunities are incredible!"
   }, {
     name: "Rajesh Kumar",
     role: "Startup Founder",
@@ -46,7 +46,7 @@ const Home = () => {
     name: "Dr. Anita Desai",
     role: "Research Scientist",
     institution: "BITS Pilani",
-    content: "The mentorship program through AlumniConnect transformed my career path. Now I mentor 5 students every semester."
+    content: "The mentorship program through ReconnectX transformed my career path. Now I mentor 5 students every semester."
   }];
   const scrollToLogin = () => {
     document.getElementById('login-section')?.scrollIntoView({
@@ -96,7 +96,7 @@ const Home = () => {
                 <div className="bg-gradient-to-r from-card via-secondary/50 to-card rounded-3xl p-8 border border-border/50 shadow-2xl">
                   <div className="text-center mb-8">
                     <h3 className="text-2xl font-bold text-foreground mb-2">Experience the Platform</h3>
-                    <p className="text-muted-foreground">See how AlumniConnect transforms educational networking</p>
+                    <p className="text-muted-foreground">See how ReconnectX transforms educational networking</p>
                   </div>
                   
                   <div className="grid md:grid-cols-3 gap-6">
