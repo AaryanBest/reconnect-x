@@ -1,21 +1,81 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { User, Briefcase, Calendar, Users, Search, MapPin, GraduationCap, Building2, Mail, Phone, Edit, Plus, ExternalLink } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+
 const AlumniDashboard = () => {
-  const profile = {
-    name: "Rahul Sharma",
-    batch: "2018",
-    degree: "B.Tech Computer Science",
-    institution: "IIT Delhi",
-    currentJob: "Senior Software Engineer",
-    company: "Microsoft India",
-    location: "Bangalore, Karnataka",
-    email: "rahul.sharma@microsoft.com",
-    phone: "+91 98765 43210",
-    skills: ["React", "Node.js", "Python", "AWS", "Leadership", "Team Management"],
-    bio: "Passionate software engineer with 6+ years of experience in full-stack development. Love mentoring junior developers and contributing to open-source projects."
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      fetchProfile();
+    }
+  }, [user]);
+
+  const fetchProfile = async () => {
+    if (!user) return;
+    
+    try {
+      const { data } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (data) {
+        setProfile(data);
+      }
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <div className="container mx-auto px-6 py-8">
+        <div className="text-center">
+          <p className="text-muted-foreground">Profile not found. Please complete your onboarding.</p>
+          <Button onClick={() => navigate('/onboarding')} className="mt-4">
+            Complete Profile
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  const displayName = `${profile.first_name || ''} ${profile.last_name || ''}`.trim() || 'User';
+  const profileData = {
+    name: displayName,
+    batch: profile.graduation_year || 'N/A',
+    degree: 'Alumni', // We can enhance this later with more detailed education info
+    institution: profile.institution || profile.institution_name || 'Institution',
+    currentJob: profile.job_title || 'Professional',
+    company: profile.current_company || 'Company',
+    location: 'India', // We can add location to profile later
+    email: profile.email || user.email,
+    phone: '+91 XXXXX XXXXX', // Privacy - don't show real phone
+    skills: profile.skills || [],
+    bio: profile.bio || 'Alumni member of ReconnectX'
   };
   const upcomingEvents = [{
     id: 1,
@@ -98,14 +158,14 @@ const AlumniDashboard = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">
-                Welcome back, {profile.name}!
+                Welcome back, {profileData.name}!
               </h1>
               <p className="text-white/90 text-lg">
-                {profile.batch} • {profile.institution} • {profile.currentJob} @ {profile.company}
+                {profileData.batch} • {profileData.institution} • {profileData.currentJob} @ {profileData.company}
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-3">
-              <Button variant="secondary" size="sm">
+              <Button variant="secondary" size="sm" onClick={() => navigate('/profile')}>
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Profile
               </Button>
@@ -126,11 +186,11 @@ const AlumniDashboard = () => {
             <CardHeader>
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white text-xl font-bold">
-                  {profile.name.split(' ').map(n => n[0]).join('')}
+                  {profileData.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <CardTitle className="text-lg">{profile.name}</CardTitle>
-                  <CardDescription>{profile.currentJob}</CardDescription>
+                  <CardTitle className="text-lg">{profileData.name}</CardTitle>
+                  <CardDescription>{profileData.currentJob}</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -138,28 +198,32 @@ const AlumniDashboard = () => {
               <div className="grid gap-3 text-sm">
                 <div className="flex items-center space-x-2">
                   <GraduationCap className="w-4 h-4 text-muted-foreground" />
-                  <span>{profile.degree} • {profile.batch}</span>
+                  <span>{profileData.degree} • {profileData.batch}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Building2 className="w-4 h-4 text-muted-foreground" />
-                  <span>{profile.company}</span>
+                  <span>{profileData.company}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4 text-muted-foreground" />
-                  <span>{profile.location}</span>
+                  <span>{profileData.location}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-xs">{profile.email}</span>
+                  <span className="text-xs">{profileData.email}</span>
                 </div>
               </div>
               
               <div>
                 <p className="text-sm font-medium mb-2">Skills</p>
                 <div className="flex flex-wrap gap-1">
-                  {profile.skills.map((skill, index) => <Badge key={index} variant="secondary" className="text-xs">
+                  {profileData.skills.length > 0 ? profileData.skills.map((skill, index) => 
+                    <Badge key={index} variant="secondary" className="text-xs">
                       {skill}
-                    </Badge>)}
+                    </Badge>
+                  ) : (
+                    <p className="text-xs text-muted-foreground">No skills added yet</p>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -207,15 +271,15 @@ const AlumniDashboard = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* Quick Actions */}
           <div className="grid md:grid-cols-3 gap-4">
-            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2" onClick={() => navigate('/profile')}>
               <User className="w-6 h-6 text-primary" />
               <span>Update Profile</span>
             </Button>
-            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2" onClick={() => navigate('/page-in-progress')}>
               <Users className="w-6 h-6 text-accent" />
               <span>Find Mentor</span>
             </Button>
-            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+            <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2" onClick={() => navigate('/jobs')}>
               <Plus className="w-6 h-6 text-success" />
               <span>Post a Job</span>
             </Button>

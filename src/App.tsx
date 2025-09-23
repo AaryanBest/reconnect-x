@@ -17,6 +17,7 @@ import Jobs from "./pages/Jobs";
 import FutureScope from "./pages/FutureScope";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
+import Analytics from "./pages/Analytics";
 import PageInProgress from "./pages/PageInProgress";
 
 const queryClient = new QueryClient();
@@ -39,7 +40,7 @@ const App = () => (
               <Route path="/dashboard" element={<AlumniDashboard />} />
               <Route path="/events" element={<Events />} />
               <Route path="/jobs" element={<Jobs />} />
-              <Route path="/analytics" element={<AdminDashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
               <Route path="/future-scope" element={<FutureScope />} />
               <Route path="/page-in-progress" element={<PageInProgress />} />
               <Route path="/settings" element={<PageInProgress />} />

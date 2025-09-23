@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -19,8 +20,36 @@ import {
 } from "lucide-react";
 
 const Events = () => {
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [userProfile, setUserProfile] = useState<any>(null);
+
+  // Fetch user profile to check role
+  const fetchUserProfile = async () => {
+    if (!user) return;
+    
+    const { supabase } = await import('@/integrations/supabase/client');
+    const { data } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('user_id', user.id)
+      .single();
+    
+    if (data) {
+      setUserProfile(data);
+    }
+  };
+
+  // Fetch profile on component mount
+  useEffect(() => {
+    if (user) {
+      fetchUserProfile();
+    }
+  }, [user]);
+
+  // Check if user can create events (not students)
+  const canCreateEvent = userProfile?.role !== 'student';
 
   const upcomingEvents = [
     {
@@ -188,10 +217,17 @@ const Events = () => {
               Connect, network, and grow with fellow alumni at exclusive events
             </p>
           </div>
-          <Button variant="cta" className="mt-4 md:mt-0">
-            <Plus className="w-4 h-4 mr-2" />
-            Create Event
-          </Button>
+          {canCreateEvent && (
+            <Button variant="cta" className="mt-4 md:mt-0">
+              <Plus className="w-4 h-4 mr-2" />
+              Create Event
+            </Button>
+          )}
+          {!canCreateEvent && userProfile && (
+            <div className="mt-4 md:mt-0 text-sm text-muted-foreground bg-muted/50 px-3 py-2 rounded-lg">
+              Students can view events but cannot create them
+            </div>
+          )}
         </div>
       </div>
 

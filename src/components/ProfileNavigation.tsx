@@ -96,7 +96,7 @@ export const ProfileNavigation = () => {
               return (
                 <Link
                   key={item.path}
-                  to={item.path === "/analytics" || item.path === "/events" || item.path === "/jobs" || item.path === "/future-scope" ? "/page-in-progress" : item.path}
+                  to={item.path === "/future-scope" ? "/page-in-progress" : item.path}
                   className={cn(
                     "flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-smooth group relative",
                     isActive

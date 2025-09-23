@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -24,9 +25,37 @@ import {
 } from "lucide-react";
 
 const Jobs = () => {
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("all");
   const [selectedLocation, setSelectedLocation] = useState("all");
+  const [userProfile, setUserProfile] = useState<any>(null);
+
+  // Fetch user profile to check role
+  const fetchUserProfile = async () => {
+    if (!user) return;
+    
+    const { supabase } = await import('@/integrations/supabase/client');
+    const { data } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('user_id', user.id)
+      .single();
+    
+    if (data) {
+      setUserProfile(data);
+    }
+  };
+
+  // Fetch profile on component mount
+  useEffect(() => {
+    if (user) {
+      fetchUserProfile();
+    }
+  }, [user]);
+
+  // Check if user can post jobs (not students)
+  const canPostJob = userProfile?.role !== 'student';
 
   const jobListings = [
     {
@@ -214,10 +243,17 @@ const Jobs = () => {
               Discover opportunities posted by fellow alumni and industry partners
             </p>
           </div>
-          <Button variant="cta" className="mt-4 md:mt-0">
-            <Plus className="w-4 h-4 mr-2" />
-            Post a Job
-          </Button>
+          {canPostJob && (
+            <Button variant="cta" className="mt-4 md:mt-0">
+              <Plus className="w-4 h-4 mr-2" />
+              Post a Job
+            </Button>
+          )}
+          {!canPostJob && userProfile && (
+            <div className="mt-4 md:mt-0 text-sm text-muted-foreground bg-muted/50 px-3 py-2 rounded-lg">
+              Students can browse jobs but cannot post opportunities
+            </div>
+          )}
         </div>
       </div>
 
