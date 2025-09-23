@@ -157,7 +157,7 @@ const FutureScope = () => {
         </div>
         <h1 className="text-4xl lg:text-6xl font-bold mb-6">
           <span className="gradient-text">What's Next</span><br />
-          <span className="text-foreground">for AlumniConnect?</span>
+          <span className="text-foreground">for ReConnectX?</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
           Our vision extends far beyond the current platform. Discover the cutting-edge technologies 
