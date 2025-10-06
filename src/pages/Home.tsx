@@ -146,109 +146,316 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="section-spacing bg-secondary/30">
-        <div className="container-premium">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-premium">Comprehensive Alumni Management</h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Designed to bridge the gap between alumni, current students, and institutions through 
-              innovative technology and government-backed security.
+      <section className="section-spacing relative overflow-hidden">
+        {/* Background gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        
+        <div className="container-premium relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-5 py-2 bg-secondary/80 border border-border/50 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+              <TrendingUp className="w-4 h-4 mr-2 text-primary" />
+              Comprehensive Platform Features
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-premium leading-tight">
+              Everything You Need in
+              <span className="gradient-text block mt-2">One Powerful Platform</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Seamlessly connect alumni, students, and institutions with cutting-edge technology 
+              backed by government-grade security and reliability.
             </p>
           </div>
           
-          <div className="grid-responsive">
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return <Card key={index} className="card-premium border-0 bg-card/80 backdrop-blur-sm group h-full">
-                  <CardHeader className="text-center pb-4">
-                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className={`w-10 h-10 ${feature.color}`} />
-                    </div>
-                    <CardTitle className="text-2xl text-premium">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <CardDescription className="text-lg leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>;
-          })}
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Gradient border effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-success opacity-0 group-hover:opacity-100 rounded-3xl blur-xl transition-all duration-500"></div>
+                  
+                  <Card className="relative card-premium border-border/50 bg-card/80 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 h-full overflow-hidden">
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <CardHeader className="pb-6 pt-8">
+                      <div className="relative mb-6">
+                        {/* Icon background glow */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-md group-hover:blur-lg transition-all duration-500"></div>
+                        
+                        <div className="relative w-16 h-16 mx-auto bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center border border-border/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                          <Icon className={`w-8 h-8 ${feature.color} group-hover:scale-110 transition-transform duration-500`} />
+                        </div>
+                      </div>
+                      
+                      <CardTitle className="text-2xl text-premium text-center group-hover:gradient-text transition-all duration-300">
+                        {feature.title}
+                      </CardTitle>
+                    </CardHeader>
+                    
+                    <CardContent className="text-center px-6 pb-8">
+                      <CardDescription className="text-base leading-relaxed text-muted-foreground">
+                        {feature.description}
+                      </CardDescription>
+                      
+                      {/* Subtle CTA */}
+                      <div className="mt-6 flex items-center justify-center text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        Learn more <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                    
+                    {/* Bottom gradient accent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-success opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  </Card>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-spacing">
-        <div className="container-premium">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-premium">Success Stories</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real experiences from our thriving alumni community
+      <section className="section-spacing bg-secondary/20 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-1/2 left-0 w-72 h-72 bg-success/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        
+        <div className="container-premium relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-5 py-2 bg-card/80 border border-border/50 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+              <Star className="w-4 h-4 mr-2 text-accent fill-accent" />
+              Trusted by Thousands
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-premium leading-tight">
+              Real Stories from Our
+              <span className="gradient-text block mt-2">Thriving Community</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Discover how ReconnectX has transformed careers and created lasting connections
             </p>
           </div>
           
-          <div className="grid-responsive">
-            {testimonials.map((testimonial, index) => <Card key={index} className="card-premium border-0 h-full">
-                <CardContent className="pt-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center text-primary font-bold text-lg mr-4">
-                      {testimonial.name.charAt(0)}
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="group"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <Card className="card-premium border-border/50 bg-card/90 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 h-full relative overflow-hidden">
+                  {/* Quote decoration */}
+                  <div className="absolute top-6 right-6 text-6xl text-primary/5 font-serif">"</div>
+                  
+                  <CardContent className="pt-8 pb-8 px-8 relative z-10">
+                    {/* Profile section */}
+                    <div className="flex items-start mb-6">
+                      <div className="relative">
+                        {/* Avatar glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                        
+                        <div className="relative w-14 h-14 bg-gradient-to-br from-primary via-primary-hover to-accent rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                          {testimonial.name.charAt(0)}
+                        </div>
+                      </div>
+                      
+                      <div className="ml-4 flex-1">
+                        <h4 className="font-bold text-foreground text-lg text-premium mb-1">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground font-semibold mb-1">
+                          {testimonial.role}
+                        </p>
+                        <div className="flex items-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
+                          <p className="text-xs text-primary font-semibold">
+                            {testimonial.institution}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-foreground text-lg text-premium">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground font-semibold">{testimonial.role}</p>
-                      <p className="text-xs text-primary font-semibold">{testimonial.institution}</p>
+                    
+                    {/* Testimonial text */}
+                    <div className="relative mb-6">
+                      <p className="text-muted-foreground text-base leading-relaxed">
+                        "{testimonial.content}"
+                      </p>
                     </div>
-                  </div>
-                  <p className="text-muted-foreground italic mb-6 text-lg leading-relaxed">"{testimonial.content}"</p>
-                  <div className="flex text-accent">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
-                  </div>
-                </CardContent>
-              </Card>)}
+                    
+                    {/* Star rating */}
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-accent fill-accent"
+                          style={{ animationDelay: `${i * 0.1}s` }}
+                        />
+                      ))}
+                      <span className="ml-2 text-sm font-semibold text-muted-foreground">5.0</span>
+                    </div>
+                  </CardContent>
+                  
+                  {/* Bottom accent */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </Card>
+              </div>
+            ))}
+          </div>
+          
+          {/* Additional trust indicators */}
+          <div className="mt-16 text-center">
+            <p className="text-sm text-muted-foreground font-semibold mb-6">Recognized by leading institutions across India</p>
+            <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
+              {stats.slice(0, 4).map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl font-bold text-foreground text-premium">{stat.number}</div>
+                  <div className="text-xs text-muted-foreground font-semibold mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="login-section" className="section-spacing bg-gradient-to-r from-primary via-primary-hover to-accent text-primary-foreground">
-        <div className="container-premium text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-premium">Ready to Transform Your Network?</h2>
-          <p className="text-xl lg:text-2xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of alumni and students already benefiting from our government-backed platform
+      <section id="login-section" className="section-spacing relative overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-hover to-accent"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-accent/50 via-transparent to-primary/50 animate-pulse-glow"></div>
+        
+        {/* Pattern overlay */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }}></div>
+        
+        <div className="container-premium text-center relative z-10">
+          {/* Badge */}
+          <div className="inline-flex items-center px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm text-white">
+            <Rocket className="w-4 h-4 mr-2" />
+            Join the Future of Alumni Networking
+          </div>
+          
+          <h2 className="text-4xl lg:text-6xl font-bold mb-8 text-white text-premium leading-tight">
+            Ready to Transform
+            <span className="block mt-2">Your Network?</span>
+          </h2>
+          
+          <p className="text-xl lg:text-2xl mb-12 text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Join thousands of alumni and students already benefiting from our government-backed platform. 
+            Start building meaningful connections today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <Link to="/login">
-              <Button variant="glass" size="xl" className="btn-premium text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/10">
+              <Button 
+                size="xl" 
+                className="btn-premium bg-white text-primary hover:bg-white/90 border-0 shadow-2xl hover:scale-105 transition-all duration-300 font-bold"
+              >
                 <Rocket className="w-5 h-5" />
                 Login to Your Account
               </Button>
             </Link>
             <Link to="/login?tab=signup">
-              <Button variant="outline" size="xl" className="btn-premium border-primary-foreground/30 text-primary-foreground bg-white/10">
+              <Button 
+                size="xl" 
+                className="btn-premium border-white/30 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm shadow-xl hover:scale-105 transition-all duration-300 font-bold"
+              >
                 <Phone className="w-5 h-5" />
                 Create New Account
               </Button>
             </Link>
           </div>
+          
+          {/* Trust indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-8 text-white/80 text-sm font-semibold">
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 mr-2" />
+              100% Secure
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 mr-2" />
+              Government Verified
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 mr-2" />
+              Free to Join
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Government Initiative Badge */}
-      <section className="py-16 bg-card/50 border-t border-border/50">
-        <div className="container-premium">
-          <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-12 text-center">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl">🇮🇳</span>
+      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background border-t border-border/50 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2"></div>
+        
+        <div className="container-premium relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left side - Badge and info */}
+              <div className="text-center md:text-left">
+                <div className="inline-flex items-center space-x-6 mb-8 bg-card/50 backdrop-blur-sm p-8 rounded-3xl border border-border/50 shadow-lg">
+                  <div className="relative">
+                    {/* Flag glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-green-500 rounded-2xl blur-lg opacity-50"></div>
+                    <div className="relative w-20 h-20 bg-gradient-to-r from-orange-500 via-white to-green-500 rounded-2xl flex items-center justify-center shadow-xl">
+                      <span className="text-4xl">🇮🇳</span>
+                    </div>
+                  </div>
+                  <div className="text-left">
+                    <h3 className="font-bold text-foreground text-2xl text-premium mb-2">Digital India</h3>
+                    <p className="text-muted-foreground font-semibold text-sm">Initiative 2025</p>
+                  </div>
+                </div>
+                
+                <h3 className="text-3xl lg:text-4xl font-bold text-foreground text-premium mb-4 leading-tight">
+                  Empowering Education Through Technology
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  A government-backed initiative designed to revolutionize alumni engagement 
+                  and strengthen India's educational ecosystem.
+                </p>
+                
+                <div className="flex flex-wrap gap-3">
+                  <div className="px-5 py-3 bg-primary/10 text-primary text-sm rounded-xl font-semibold border border-primary/20 backdrop-blur-sm">
+                    <CheckCircle className="w-4 h-4 inline mr-2" />
+                    Government Verified
+                  </div>
+                  <div className="px-5 py-3 bg-success/10 text-success text-sm rounded-xl font-semibold border border-success/20 backdrop-blur-sm">
+                    <CheckCircle className="w-4 h-4 inline mr-2" />
+                    Nationwide Platform
+                  </div>
+                </div>
               </div>
-              <div className="text-left">
-                <h3 className="font-bold text-foreground text-xl text-premium">Digital India Initiative</h3>
-                <p className="text-muted-foreground font-semibold">Empowering education through technology</p>
+              
+              {/* Right side - Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                {stats.map((stat, index) => (
+                  <div 
+                    key={index}
+                    className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:scale-105 group"
+                  >
+                    <div className="text-3xl lg:text-4xl font-bold text-foreground text-premium mb-2 group-hover:gradient-text transition-all duration-300">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-muted-foreground font-semibold">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="text-muted-foreground font-semibold">
-              Developed for Smart India Hackathon 2025 • Scalable for nationwide adoption
+            
+            {/* Bottom tagline */}
+            <div className="mt-16 text-center">
+              <p className="text-muted-foreground font-semibold text-lg">
+                Built for <span className="text-primary font-bold">Smart India Hackathon 2025</span> • Scalable for nationwide adoption
+              </p>
             </div>
           </div>
         </div>
