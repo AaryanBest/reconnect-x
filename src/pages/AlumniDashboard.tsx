@@ -24,13 +24,15 @@ const AlumniDashboard = () => {
     if (!user) return;
     
     try {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
 
-      if (data) {
+      if (error) {
+        console.error('Error fetching profile:', error);
+      } else if (data) {
         setProfile(data);
       }
     } catch (error) {
