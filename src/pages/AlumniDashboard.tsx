@@ -17,6 +17,8 @@ const AlumniDashboard = () => {
   useEffect(() => {
     if (user) {
       fetchProfile();
+    } else {
+      setLoading(false);
     }
   }, [user]);
 
@@ -47,6 +49,19 @@ const AlumniDashboard = () => {
       <div className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-center h-64">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="container mx-auto px-6 py-8">
+        <div className="text-center">
+          <p className="text-muted-foreground">You need to be logged in to view your dashboard.</p>
+          <Button onClick={() => navigate('/login')} className="mt-4">
+            Go to Login
+          </Button>
         </div>
       </div>
     );
